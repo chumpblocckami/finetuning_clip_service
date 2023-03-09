@@ -25,7 +25,7 @@ FOLDER_PATH = "../products"
 if "products" not in os.listdir():
     os.mkdir(FOLDER_PATH)
 if "ProductDataset_30" not in os.listdir(FOLDER_PATH):
-    with ZipFile("../ProductDataset_30.zip", 'r') as zObject:
+    with ZipFile("./ProductDataset_30.zip", 'r') as zObject:
         zObject.extractall(path=FOLDER_PATH)
 
 n = 0
