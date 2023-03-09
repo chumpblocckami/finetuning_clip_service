@@ -1,0 +1,4 @@
+*.zip
+venv
+docker-compose.yaml
+products

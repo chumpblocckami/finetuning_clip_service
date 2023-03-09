@@ -1,0 +1,8 @@
+datasets
+pillow
+transformers
+python-env
+torch
+torchvision
+datasets
+gdown

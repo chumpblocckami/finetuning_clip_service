@@ -1,0 +1,25 @@
+version: "3.3"
+
+services:
+
+  clip:
+      build:
+        context: service
+      environment:
+        - PRODUCTS_DATASET_URL=to_be_defined
+        - DATASET_PATH=finetuned/dataset
+        - OUTPUT_FOLDER=finetuned/model
+        - REPO_ID=openai/clip-vit-large-patch14-336
+        - OUT_JSON=finetuned/src.json
+        - NUM_TRAIN_EPOCHS=3
+        - BATCH_SIZE=32
+        - NVIDIA_VISIBLE_DEVICES=all
+      volumes:
+        - "./finetuned:/app/finetuned"
+      deploy:
+        resources:
+          reservations:
+            devices:
+              - driver: nvidia
+                count: all
+                capabilities: [ gpu ]
