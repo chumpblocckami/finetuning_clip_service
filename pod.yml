@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: products_clip
+  namespace: clip
+  labels:
+    purpose: finetune-clip-on-products
+spec:
+  containers:
+    - image: products_clip
+      name: products_clip
+      env:
+        - name: PRODUCTS_DATASET_URL
+          value: "google_drive_folder_id"
+        - name: DATASET_PATH
+          value: "data/dataset"
+        - name: OUTPUT_FOLDER
+          value: "data/model"
+        - name: REPO_ID
+          value: "openai/clip-vit-large-patch14-336"
+        - name: OUT_JSON
+          value: "data/src.json"
+        - name: NUM_TRAIN_EPOCHS
+          value: 3
+        - name: BATCH_SIZE
+          value: 32
+        - name: NVIDIA_VISIBLE_DEVICES
+          value: "all"
+      args:
+        - "--gpus=all"
+      volumeMounts:
+        - mountPath: /data
+          name: products_clip_data
+  volumes:
+    - name: test-products_clip_data
+      hostPath:
+        # directory location on host
+        path: /data
+        # this field is optional
+        type: Directory
